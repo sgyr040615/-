@@ -2,23 +2,180 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>重大宣布</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左钰铃是大笨蛋 - 摄影与日记</title>
     <style>
+        /* 1. 基础重置与 Apple 专属字体栈 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
+            /* 自动调用苹果 SF 字体，非苹果设备调用备用现代字体 */
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #fbfbfd; /* 苹果经典的极浅灰背景 */
+            color: #1d1d1f; /* 柔和的深色，不是纯黑 */
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased; /* 让字体更平滑 */
+        }
+
+        /* 2. 毛玻璃特效导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 48px;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: blur(20px); /* 核心特效：背景模糊 */
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
+            z-index: 1000;
         }
-        h1 {
-            font-size: 5rem;
-            color: #ff4757;
+        nav a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin: 0 20px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        nav a:hover {
+            opacity: 1;
+        }
+
+        /* 3. 巨幕展示区 (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 15px;
+        }
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 400;
+            color: #86868b; /* 苹果经典的次级灰色 */
+            margin-bottom: 40px;
+        }
+        .hero p {
+            font-size: 18px;
+            font-weight: 400;
+            max-width: 600px;
+            color: #1d1d1f;
+        }
+
+        /* 4. 摄影作品网格 (Gallery Grid) */
+        .gallery-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 60px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 18px; /* 经典的圆角 */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 极柔和的阴影 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .card-img {
+            width: 100%;
+            height: 250px;
+            background-color: #f5f5f7;
+            /* 这里用纯色代替你的照片，实际使用时换成 <img> 标签 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #86868b;
+            font-size: 14px;
+        }
+        .card-content {
+            padding: 25px;
+        }
+        .card-content h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .card-content p {
+            font-size: 14px;
+            color: #86868b;
         }
     </style>
 </head>
 <body>
-    <h1>左钰铃是大笨蛋！</h1>
+
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#">首页</a>
+        <a href="#">摄影日记</a>
+        <a href="#">关于我们</a>
+    </nav>
+
+    <!-- 巨幕区 -->
+    <section class="hero">
+        <h1>Lens & Life</h1>
+        <h2>捕捉不可复制的瞬间。</h2>
+        <p>这里记录着那些按下快门的时刻，以及写在照片背后的独家记忆。把世界放进取景器，把你放在心里。</p>
+    </section>
+
+    <!-- 图文网格区 -->
+    <section class="gallery-section">
+        <h2 class="section-title">近期胶卷</h2>
+        <div class="grid">
+            <!-- 卡片 1 -->
+            <div class="card">
+                <div class="card-img">[替换为东京塔夜景照片]</div>
+                <div class="card-content">
+                    <h3>东京漫步</h3>
+                    <p>霓虹灯下的街道与冬夜的微风。2025.12</p>
+                </div>
+            </div>
+            <!-- 卡片 2 -->
+            <div class="card">
+                <div class="card-img">[替换为函馆雪景照片]</div>
+                <div class="card-content">
+                    <h3>函馆初雪</h3>
+                    <p>在八幡坂俯瞰大海，纯白的浪漫。2026.01</p>
+                </div>
+            </div>
+            <!-- 卡片 3 -->
+            <div class="card">
+                <div class="card-img">[替换为札幌美食照片]</div>
+                <div class="card-content">
+                    <h3>札幌的温度</h3>
+                    <p>和牛烧肉的香气，是抵御严寒最好的慰藉。2026.02</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
