@@ -3,205 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>左钰铃是大笨蛋 - 摄影与日记</title>
+    <title>Zuo yuling & Shangguan yiran</title>
     <style>
-        /* 1. 基础重置与 Apple 专属字体栈 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* --- 1. 基础设定与 Apple 字体栈 --- */
+        :root {
+            --bg-color: #fbfbfd;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --link-color: #06c;
+            --card-bg: #ffffff;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            /* 自动调用苹果 SF 字体，非苹果设备调用备用现代字体 */
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-            background-color: #fbfbfd; /* 苹果经典的极浅灰背景 */
-            color: #1d1d1f; /* 柔和的深色，不是纯黑 */
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased; /* 让字体更平滑 */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "PingFang SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 2. 毛玻璃特效导航栏 */
+        /* --- 2. 极简毛玻璃顶栏 --- */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: 48px;
-            background: rgba(251, 251, 253, 0.8);
-            backdrop-filter: blur(20px); /* 核心特效：背景模糊 */
-            -webkit-backdrop-filter: blur(20px);
+            top: 0; width: 100%; height: 54px;
+            background: rgba(251, 251, 253, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             z-index: 1000;
         }
-        nav a {
-            text-decoration: none;
-            color: #1d1d1f;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin: 0 20px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        nav a:hover {
-            opacity: 1;
+        nav span {
+            font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
         }
 
-/* 3. 巨幕展示区 (Hero Section) - 带有照片背景 */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        /* --- 3. 日记主容器 (单柱阅读流) --- */
+        main {
+            max-width: 700px; /* 控制最佳阅读宽度 */
+            margin: 100px auto 60px;
             padding: 0 20px;
-            position: relative; /* 新增：为伪元素定位 */
-            overflow: hidden; /* 新增：隐藏超出部分 */
-            color: #ffffff; /* 确保文字是白色 */
-            z-index: 1; /* 确保文字在伪元素之上 */
         }
 
-        /* 修改：不再在 .hero 上直接设置背景 */
-        /* 新增：用伪元素来承载旋转后的背景图片 */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%; /* 核心：为了覆盖旋转后的区域，伪元素需要比容器更大 */
-            left: -50%;
-            width: 200%; /* 核心：这里是关键 */
-            height: 200%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('./IMG_2583.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transform: rotate(90deg); /* 核心：旋转图片 */
-            z-index: -1; /* 核心：确保图片在文字下方 */
-        }
-        
-        /* 保持 h1, h2, p 的样式不变 */
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* 加一点文字阴影 */
-        }
-        .hero h2 {
-            font-size: 28px;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.85); /* 微微透明的白色 */
-            margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .hero p {
-            font-size: 18px;
-            font-weight: 400;
-            max-width: 600px;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        /* 4. 摄影作品网格 (Gallery Grid) */
-        .gallery-section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
+        /* --- 4. 日记头部 --- */
+        .diary-header {
             text-align: center;
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .diary-date {
+            font-size: 13px; font-weight: 500; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 12px; display: block;
         }
-        .card {
-            background: #fff;
-            border-radius: 18px; /* 经典的圆角 */
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 极柔和的阴影 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .diary-title {
+            font-size: 40px; font-weight: 700; letter-spacing: -0.015em;
+            line-height: 1.2; margin-bottom: 20px;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+
+        /* --- 5. 正文与图片排版 --- */
+        .diary-content {
+            font-size: 17px;
+            color: #333336;
         }
-        .card-img {
+        .diary-content p {
+            margin-bottom: 24px;
+        }
+        /* Apple 风的图片展示：圆角、柔和阴影 */
+        .diary-content img {
             width: 100%;
-            height: 250px;
-            background-color: #f5f5f7;
-            /* 这里用纯色代替你的照片，实际使用时换成 <img> 标签 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #86868b;
-            font-size: 14px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 32px 0;
+            display: block;
         }
-        .card-content {
-            padding: 25px;
+        /* 引用块设计 */
+        blockquote {
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+            margin: 32px 0;
+            font-size: 19px; font-style: italic; color: var(--text-muted);
         }
-        .card-content h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
+
+        /* --- 6. 评论区容器 --- */
+        .comments-section {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
-        .card-content p {
-            font-size: 14px;
-            color: #86868b;
+        .comments-title {
+            font-size: 24px; font-weight: 600; margin-bottom: 24px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
     <nav>
-        <a href="#">首页</a>
-        <a href="#">摄影日记</a>
-        <a href="#">关于我们</a>
+        <span>Diary & Lens</span>
     </nav>
 
-    <!-- 巨幕区 -->
-    <section class="hero">
-        <h1>左钰铃是大笨蛋</h1>
-        <h2>捕捉不可复制的瞬间。</h2>
-        <p>这里记录着那些按下快门的时刻，以及写在照片背后的独家记忆。把世界放进取景器，把你放在心里。</p>
-    </section>
+    <main>
+        <article>
+            <header class="diary-header">
+                <span class="diary-date">2026年2月3日 · 札幌</span>
+                <h1 class="diary-title">冬日纪事与和牛烧肉</h1>
+            </header>
 
-    <!-- 图文网格区 -->
-    <section class="gallery-section">
-        <h2 class="section-title">近期胶卷</h2>
-        <div class="grid">
-            <!-- 卡片 1 -->
-            <div class="card">
-                <div class="card-img">[替换为东京塔夜景照片]</div>
-                <div class="card-content">
-                    <h3>东京漫步</h3>
-                    <p>霓虹灯下的街道与冬夜的微风。2025.12</p>
-                </div>
+            <div class="diary-content">
+                <p>坐在从函馆开往札幌的列车上，窗外是无边无际的纯白雪景。耳机里循环播放着林俊杰的歌，配合着列车压过铁轨的白噪音，让人感到一种难得的平静。</p>
+                
+                <img src="./IMG_4971.jpg" alt="冬日摄影">
+                
+                <p>最近一直在死磕五十音图和日语词汇，试图在点餐时能用稍微流利一点的日语交流。虽然进度不快，但每记住一个假名，都觉得离这座城市的烟火气更近了一步。</p>
+
+                <blockquote>
+                    比起匆忙打卡景点，我更享受在异国他乡的街头漫无目的地游荡，去捕捉那些不可复制的瞬间。
+                </blockquote>
+
+                <p>今晚预定了期待已久的和牛烧肉放题。在零下几度的天气里，听着烤肉在铁网上发出滋滋的声响，这大概是对一天旅途最好的慰藉了。这篇日记，就当作是给这段旅程留下的小小注脚吧。</p>
             </div>
-            <!-- 卡片 2 -->
-            <div class="card">
-                <div class="card-img">[替换为函馆雪景照片]</div>
-                <div class="card-content">
-                    <h3>函馆初雪</h3>
-                    <p>在八幡坂俯瞰大海，纯白的浪漫。2026.01</p>
-                </div>
+        </article>
+
+        <section class="comments-section">
+            <h2 class="comments-title">留言</h2>
+            <div id="giscus-container">
+                <p style="color: #86868b; font-size: 14px;">评论系统加载中... (需配置 GitHub Discussions)</p>
             </div>
-            <!-- 卡片 3 -->
-            <div class="card">
-                <div class="card-img">[替换为札幌美食照片]</div>
-                <div class="card-content">
-                    <h3>札幌的温度</h3>
-                    <p>和牛烧肉的香气，是抵御严寒最好的慰藉。2026.02</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
 </body>
 </html>
