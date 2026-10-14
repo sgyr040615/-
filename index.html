@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zuo yuling & Shangguan yiran</title>
+    <title>冬日纪事 · Yuling &amp; Yiran</title>
+    <meta name="description" content="Yuling 与 Yiran 的旅行日记与摄影，记录札幌冬日旅途中的日常与瞬间。">
     <style>
         /* --- 1. 基础设定与 Apple 字体栈 --- */
         :root {
@@ -70,6 +71,7 @@
         /* Apple 风的图片展示：圆角、柔和阴影 */
         .diary-content img {
             width: 100%;
+            height: auto;
             border-radius: 18px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             margin: 32px 0;
@@ -92,6 +94,17 @@
         .comments-title {
             font-size: 24px; font-weight: 600; margin-bottom: 24px;
         }
+        .comments-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            margin-top: 16px;
+        }
+        a { color: var(--link-color); text-underline-offset: 4px; }
+        a:focus-visible { outline: 2px solid var(--link-color); outline-offset: 4px; }
+        @media (max-width: 480px) {
+            .diary-title { font-size: 32px; }
+        }
     </style>
 </head>
 <body>
@@ -102,7 +115,7 @@
 
     <main>
         <article>
-            <header class="Yuling & Yiran">
+            <header class="diary-header">
                 <span class="diary-date">2026年2月3日 · 札幌</span>
                 <h1 class="diary-title">冬日纪事</h1>
             </header>
@@ -110,7 +123,7 @@
             <div class="diary-content">
                 <p>坐在从函馆开往札幌的列车上，窗外是无边无际的纯白雪景。耳机里循环播放着林俊杰的歌，配合着列车压过铁轨的白噪音，让人感到一种难得的平静。</p>
                 
-                <img src="./IMG_2583.jpg" alt="冬日摄影">
+                <img src="./IMG_2583.jpeg" alt="冬日旅行摄影" width="1936" height="3840" decoding="async">
                 
                 <p>最近一直在死磕五十音图和日语词汇，试图在点餐时能用稍微流利一点的日语交流。虽然进度不快，但每记住一个假名，都觉得离这座城市的烟火气更近了一步。</p>
 
@@ -124,9 +137,11 @@
 
         <section class="comments-section">
             <h2 class="comments-title">留言</h2>
-            <div id="giscus-container">
-                <p style="color: #86868b; font-size: 14px;">评论系统加载中... (需配置 GitHub Discussions)</p>
-            </div>
+            <p>欢迎分享你的旅行故事。留言将在 GitHub 公开展示，需要登录 GitHub 账号。</p>
+            <p class="comments-actions">
+                <a href="https://github.com/sgyr040615/-/issues/new?title=%E5%86%AC%E6%97%A5%E7%BA%AA%E4%BA%8B%20%C2%B7%20%E7%95%99%E8%A8%80">写下留言</a>
+                <a href="https://github.com/sgyr040615/-/issues">查看留言</a>
+            </p>
         </section>
     </main>
 
